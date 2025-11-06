@@ -1,0 +1,18 @@
+name: Greetings
+# This is the Trigger here, so if we have a pull_request_target/ issue is opened then its going to trigger.
+on: [pull_request_target, issues]
+# This is where we define the jobs (What needs to do).
+jobs:
+  greeting:  # This is the name of the job (you can keep it as anything).
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      pull-requests: write
+    steps:
+    # (Now this is calling an external already pre-defined GHA logic): https://github.com/actions/first-interaction
+    - uses: actions/first-interaction@v1 
+      with: 
+      # This is the input that goes Inside, in the already pre-defined Action that is being Called...
+        repo-token: ${{ secrets.GITHUB_TOKEN }} 
+        issue-message: "Message that will be displayed on users' first issue"
+        pr-message: "Message that will be displayed on users' first pull request"
