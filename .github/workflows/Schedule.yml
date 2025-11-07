@@ -1,0 +1,13 @@
+name: Test Schedule Workflow
+
+on:
+  schedule:
+    - cron: "*/2 * * * *"   # Runs every 2 minutes
+  workflow_dispatch:         # Allows manual trigger from GitHub UI
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo current time
+        run: echo "The current server time is $(date)"
